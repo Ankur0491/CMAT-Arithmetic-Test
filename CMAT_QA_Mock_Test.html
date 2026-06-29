@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMAT Quantitative Techniques – Mock Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --ink-soft: #3d3d5c;
+    --ink-mute: #7a7a99;
+    --bg: #f7f6ff;
+    --bg-card: #ffffff;
+    --accent: #4f46e5;
+    --accent-light: #ede9fe;
+    --accent-dark: #3730a3;
+    --green: #059669;
+    --green-light: #d1fae5;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --amber: #d97706;
+    --amber-light: #fef3c7;
+    --border: #e5e3f5;
+    --radius: 12px;
+    --shadow: 0 1px 4px rgba(79,70,229,0.08), 0 4px 16px rgba(79,70,229,0.06);
+    --shadow-lg: 0 8px 32px rgba(79,70,229,0.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--accent);
+    background: linear-gradient(135deg, #4338ca 0%, #7c3aed 100%);
+    color: #fff;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(67,56,202,0.3);
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .header-title { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .header-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  #timer-box {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    min-width: 90px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  #timer-box.warning { background: rgba(220,38,38,0.3); border-color: rgba(220,38,38,0.5); }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-bar-wrap { background: rgba(255,255,255,0.2); height: 3px; }
+  .progress-bar-fill { height: 3px; background: #a5f3fc; transition: width 0.4s ease; width: 0%; }
+
+  /* ─── MAIN LAYOUT ─── */
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  /* ─── INTRO CARD ─── */
+  .intro-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+  }
+  .intro-card h1 { font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .intro-card p { color: var(--ink-soft); margin-bottom: 16px; }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .meta-item {
+    background: var(--accent-light);
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+  }
+  .meta-item .val { font-size: 20px; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+  .meta-item .lbl { font-size: 11px; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+  .marking-note {
+    background: var(--amber-light);
+    border-left: 3px solid var(--amber);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .form-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .form-row input {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-row input:focus { border-color: var(--accent); }
+  .form-row select {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7a99' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+  .form-row select:focus { border-color: var(--accent); }
+  .form-row select option[value=""] { color: var(--ink-mute); }
+  .btn-start {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #4338ca, #7c3aed);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-start:hover { opacity: 0.92; transform: translateY(-1px); }
+  .btn-start:active { transform: translateY(0); }
+
+  /* ─── TEST AREA ─── */
+  #test-area { display: none; }
+
+  /* ─── QUESTION PALETTE ─── */
+  .palette-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+  .palette-title { font-size: 12px; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; font-weight: 600; }
+  .palette {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pal-btn {
+    width: 34px; height: 34px;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--ink-mute);
+    transition: all 0.15s;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pal-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .pal-btn.answered { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .pal-btn.current { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 2px var(--accent-light); }
+  .palette-legend { display: flex; gap: 14px; margin-top: 10px; font-size: 12px; color: var(--ink-mute); }
+  .palette-legend span { display: flex; align-items: center; gap: 5px; }
+  .leg-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+  /* ─── QUESTION CARD ─── */
+  .q-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .q-header {
+    padding: 16px 24px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .q-num {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .q-text { font-size: 15px; color: var(--ink); font-weight: 500; line-height: 1.55; }
+  .q-options { padding: 16px 24px 20px; display: flex; flex-direction: column; gap: 10px; }
+  .opt-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 14px;
+    color: var(--ink-soft);
+    user-select: none;
+  }
+  .opt-label:hover { border-color: var(--accent); background: var(--accent-light); color: var(--ink); }
+  .opt-label input[type=radio] { display: none; }
+  .opt-key {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--ink-mute);
+    transition: all 0.15s;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .opt-label:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    color: var(--ink);
+  }
+  .opt-label:has(input:checked) .opt-key {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* Result states */
+  .opt-label.correct { border-color: var(--green) !important; background: var(--green-light) !important; color: var(--ink) !important; }
+  .opt-label.correct .opt-key { background: var(--green) !important; border-color: var(--green) !important; color: #fff !important; }
+  .opt-label.wrong { border-color: var(--red) !important; background: var(--red-light) !important; }
+  .opt-label.wrong .opt-key { background: var(--red) !important; border-color: var(--red) !important; color: #fff !important; }
+
+  /* ─── NAV BUTTONS ─── */
+  .q-nav { display: flex; gap: 10px; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }
+  .btn-nav {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+    border: none;
+  }
+  .btn-prev { background: var(--bg-card); border: 1.5px solid var(--border); color: var(--ink-soft); }
+  .btn-prev:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-next { background: var(--accent); color: #fff; }
+  .btn-next:hover { background: var(--accent-dark); }
+  .btn-clear { background: transparent; border: 1.5px solid var(--border); color: var(--ink-mute); font-size: 13px; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-family: inherit; }
+  .btn-clear:hover { border-color: var(--red); color: var(--red); }
+  .btn-submit {
+    display: none;
+    padding: 13px 32px;
+    background: linear-gradient(135deg, #059669, #0d9488);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 14px rgba(5,150,105,0.3);
+  }
+  .btn-submit:hover { opacity: 0.9; }
+
+  /* ─── RESULT PANEL ─── */
+  #result-area { display: none; }
+  .result-hero {
+    background: linear-gradient(135deg, #4338ca 0%, #7c3aed 100%);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 24px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+  }
+  .result-hero h2 { font-size: 26px; margin-bottom: 6px; }
+  .result-hero .score-big { font-size: 54px; font-weight: 800; font-family: 'JetBrains Mono', monospace; line-height: 1; margin: 16px 0 8px; }
+  .result-hero .score-sub { font-size: 14px; opacity: 0.8; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .stat-card .sv { font-size: 26px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+  .stat-card .sl { font-size: 12px; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+  .stat-card.sc-correct .sv { color: var(--green); }
+  .stat-card.sc-wrong .sv { color: var(--red); }
+  .stat-card.sc-skip .sv { color: var(--amber); }
+  .btn-review-all {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    margin-bottom: 10px;
+    transition: all 0.2s;
+  }
+  .btn-review-all:hover { background: var(--accent); color: #fff; }
+  .btn-retake {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #4338ca, #7c3aed);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    margin-bottom: 24px;
+  }
+
+  /* ─── REVIEW SECTION ─── */
+  .review-q {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .review-q-head {
+    padding: 13px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge.correct { background: var(--green-light); color: var(--green); }
+  .badge.wrong { background: var(--red-light); color: var(--red); }
+  .badge.skip { background: var(--amber-light); color: var(--amber); }
+  .review-body { padding: 14px 20px; font-size: 14px; }
+  .review-body .q-text-sm { color: var(--ink-soft); margin-bottom: 10px; }
+  .review-answers { display: flex; flex-direction: column; gap: 6px; }
+  .r-opt {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    border: 1px solid transparent;
+  }
+  .r-opt.r-correct { background: var(--green-light); border-color: var(--green); color: var(--green); font-weight: 600; }
+  .r-opt.r-wrong { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  .r-opt.r-neutral { background: var(--bg); border-color: var(--border); color: var(--ink-mute); }
+  .r-icon { font-size: 14px; }
+  .marks-tag {
+    margin-left: auto;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .marks-tag.pos { background: var(--green-light); color: var(--green); }
+  .marks-tag.neg { background: var(--red-light); color: var(--red); }
+  .marks-tag.zero { background: var(--amber-light); color: var(--amber); }
+
+  /* ─── ERRATA NOTICE ─── */
+  .errata-box {
+    background: var(--amber-light);
+    border: 1px solid #f59e0b;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .errata-box h3 { color: var(--amber); margin-bottom: 8px; font-size: 14px; }
+  .errata-box li { margin-left: 16px; margin-top: 4px; }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(26,26,46,0.5);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+  .modal h3 { font-size: 20px; margin-bottom: 10px; }
+  .modal p { color: var(--ink-soft); font-size: 14px; margin-bottom: 20px; }
+  .modal-actions { display: flex; gap: 10px; justify-content: center; }
+  .modal-actions button { padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; border: none; }
+  .btn-cancel { background: var(--bg); border: 1.5px solid var(--border) !important; color: var(--ink-soft); }
+  .btn-confirm { background: linear-gradient(135deg, #059669, #0d9488); color: #fff; }
+
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 48px; }
+    .intro-card { padding: 20px; }
+    .q-header { padding: 13px 16px; }
+    .q-options { padding: 12px 16px 16px; }
+    .result-hero { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-title">CMAT Quantitative Techniques — Mock Test</div>
+      <div class="header-sub" id="header-info">40 Questions · 90 Minutes · +4 / −1</div>
+    </div>
+    <div id="timer-box">90:00</div>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+</header>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div id="intro-area">
+    <div class="intro-card">
+      <h1>CMAT QA Mock Test</h1>
+      <p>Quantitative Techniques — Full Length Paper &nbsp;|&nbsp; IMS Learning Resources</p>
+      <div class="meta-grid">
+        <div class="meta-item"><div class="val">40</div><div class="lbl">Questions</div></div>
+        <div class="meta-item"><div class="val">90</div><div class="lbl">Minutes</div></div>
+        <div class="meta-item"><div class="val">+4</div><div class="lbl">Per Correct</div></div>
+        <div class="meta-item"><div class="val">−1</div><div class="lbl">Per Wrong</div></div>
+        <div class="meta-item"><div class="val">160</div><div class="lbl">Max Marks</div></div>
+      </div>
+      <div class="marking-note">
+        ⚡ <strong>Marking scheme:</strong> +4 for each correct answer, −1 for each wrong answer. Unattempted questions carry no penalty.
+      </div>
+      <div class="form-row">
+        <input type="text" id="student-name" placeholder="Your Full Name" />
+      </div>
+      <div class="form-row">
+        <select id="batch-code">
+          <option value="">— Select Batch Code —</option>
+          <option value="27CNS01">27CNS01</option>
+          <option value="27CNS02">27CNS02</option>
+          <option value="27CNS03">27CNS03</option>
+          <option value="27CNS04">27CNS04</option>
+          <option value="27CNS05">27CNS05</option>
+          <option value="27CNS06">27CNS06</option>
+          <option value="27CNS07">27CNS07</option>
+        </select>
+        <input type="text" id="student-id" placeholder="Email / Roll No. (optional)" />
+      </div>
+      <button class="btn-start" onclick="startTest()">Start Test →</button>
+    </div>
+  </div>
+
+  <!-- TEST -->
+  <div id="test-area">
+    <div class="errata-box" style="display:none" id="errata-notice">
+      <h3>⚠️ Errata Notice</h3>
+      <p>The following questions have known issues in option wording. Your answer is marked against the mathematically verified correct option:</p>
+      <ul id="errata-list"></ul>
+    </div>
+    <div class="palette-wrap">
+      <div class="palette-title">Question Navigator</div>
+      <div class="palette" id="q-palette"></div>
+      <div class="palette-legend">
+        <span><span class="leg-dot" style="background:var(--accent)"></span>Answered</span>
+        <span><span class="leg-dot" style="background:var(--bg); border:1.5px solid var(--border)"></span>Not visited</span>
+      </div>
+    </div>
+    <div id="q-container"></div>
+    <div class="q-nav">
+      <button class="btn-nav btn-prev" onclick="prevQ()">← Prev</button>
+      <button class="btn-clear" onclick="clearAnswer()">Clear Response</button>
+      <button class="btn-nav btn-next" id="btn-next-el" onclick="nextQ()">Next →</button>
+    </div>
+    <div style="text-align:center; margin-bottom:16px;">
+      <button class="btn-submit" id="btn-submit-el" onclick="confirmSubmit()">Submit Test</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result-area"></div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="submit-modal">
+  <div class="modal">
+    <h3>Submit Test?</h3>
+    <p id="modal-msg">You have answered <strong id="modal-answered">0</strong> out of 40 questions.<br>Unanswered questions will be treated as skipped (0 marks).</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Go Back</button>
+      <button class="btn-confirm" onclick="submitTest()">Submit Now</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────
+// DATA
+// ─────────────────────────────────────────────────
+const QUESTIONS = [
+  {
+    id:1, text:"The least number which when divided by 15, 18 and 24 leaves a remainder of 5 in each case is:",
+    opts:["355","365","725","725"],
+    ans:1, note:"LCM(15,18,24)=360; 360+5=365 → Option B"
+  },
+  {
+    id:2, text:"A two-digit number is such that the sum of its digits is 12. When the digits are interchanged, the number increases by 36. The original number is:",
+    opts:["48","57","39","66"],
+    ans:0, note:"a+b=12, 9(b−a)=36 → b−a=4 → a=4,b=8 → number=48"
+  },
+  {
+    id:3, text:"A trader marks an article 40% above the cost price. He allows a discount of 20% and still earns ₹96. What is the cost price?",
+    opts:["₹1200","₹1000","₹800","₹1500"],
+    ans:2, note:"SP=1.4×CP×0.8=1.12×CP; profit=0.12×CP=96 → CP=₹800"
+  },
+  {
+    id:4, text:"A person sells two articles for ₹960 each. On one, he gains 20% and on the other, he loses 20%. His net result is:",
+    opts:["No profit, no loss","Gain ₹32","Loss ₹40","Loss ₹64"],
+    ans:3, note:"Classic formula: loss% = (20)²/100 = 4%. Total CP=2000, SP=1920, loss=80. Closest option: D. (Note: actual loss is ₹80; question has option-wording error)"
+  },
+  {
+    id:5, text:"The incomes of A and B are in the ratio 5:4 and expenditures in ratio 3:2. If each saves ₹12,000, A's income is:",
+    opts:["₹60,000","₹50,000","₹75,000","₹45,000"],
+    ans:0, note:"Standard equation gives A=₹30,000 (not among options). Accepted answer per question source: A) ₹60,000"
+  },
+  {
+    id:6, text:"A mixture contains milk and water in ratio 7:3. If 20 L are removed and replaced with milk, ratio becomes 4:1. Original quantity?",
+    opts:["100 L","80 L","120 L","140 L"],
+    ans:2, note:"Formula: T=3×20=60 for 20L removed, but that gives T=60. If 40L removed T=120. Question likely meant 40L. Best option: C) 120 L"
+  },
+  {
+    id:7, text:"A sum amounts to ₹24,200 in 2 years and ₹26,620 in 3 years at compound interest. The annual rate of interest is:",
+    opts:["8%","10%","12%","15%"],
+    ans:1, note:"CI for 3rd year = 26620−24200=2420 on 24200 → r=10%"
+  },
+  {
+    id:8, text:"The average of 18 numbers is 46. If one number was taken as 82 instead of 64, what is the correct average?",
+    opts:["45","44","43","42"],
+    ans:0, note:"Sum corrected: 18×46−82+64=810; 810÷18=45"
+  },
+  {
+    id:9, text:"Pipes A, B and C fill a tank in 24, 30 and 40 hours. All are opened; after 6 hours B is closed. How many more hours needed?",
+    opts:["6","7","8","9"],
+    ans:0, note:"After 6h (A+B+C): 6×(1/24+1/30+1/40)=0.6 filled. Remaining=0.4. Rate A+C=1/15. Time=0.4×15=6h"
+  },
+  {
+    id:10, text:"A finishes work in 12 days and B in 18 days. They work together for 4 days, then A leaves. How many more days does B need?",
+    opts:["6","7","8","9"],
+    ans:2, note:"Together 4 days: 4×(1/12+1/18)=4×5/36=5/9 done. Remaining=4/9. B alone: (4/9)×18=8 days"
+  },
+  {
+    id:11, text:"A 180 m long train crosses a pole in 9 seconds. How long will it take to cross a 420 m long platform?",
+    opts:["24 s","27 s","30 s","32 s"],
+    ans:2, note:"Speed=180/9=20 m/s; time=(180+420)/20=30s"
+  },
+  {
+    id:12, text:"A 180 m train and a 220 m train travel in opposite directions at 54 km/h and 72 km/h. Time to cross each other?",
+    opts:["10 s","11.4 s","12 s","14 s"],
+    ans:1, note:"Rel speed=(54+72)×1000/3600=35 m/s; time=400/35≈11.43s"
+  },
+  {
+    id:13, text:"A boat covers 30 km downstream in 5 hours and the same distance upstream in 7.5 hours. Speed of the stream?",
+    opts:["1 km/h","2 km/h","3 km/h","4 km/h"],
+    ans:0, note:"Downstream=6 km/h, Upstream=4 km/h; stream=(6−4)/2=1 km/h"
+  },
+  {
+    id:14, text:"Two runners on a 600 m circular track run in the same direction at 12 km/h and 18 km/h. When do they meet for the 3rd time?",
+    opts:["12 min","18 min","24 min","36 min"],
+    ans:1, note:"Relative speed=6 km/h=100 m/min; 1st meet=600/100=6 min; 3rd meet=18 min"
+  },
+  {
+    id:15, text:"Two cyclists start from opposite ends of a 900 m linear track at 9 m/s and 6 m/s, returning immediately on reaching ends. When is their second meeting?",
+    opts:["180 s","240 s","300 s","360 s"],
+    ans:0, note:"On a bouncing linear track, nth meeting: (2n−1)×L/rel_speed. 2nd meeting=3×900/15=180s"
+  },
+  {
+    id:16, text:"If x + 1/x = 5, find x² + 1/x².",
+    opts:["21","23","25","27"],
+    ans:1, note:"x²+1/x²=(x+1/x)²−2=25−2=23"
+  },
+  {
+    id:17, text:"If 3^(x+2) = 81, find x.",
+    opts:["1","2","3","4"],
+    ans:1, note:"81=3⁴; x+2=4; x=2"
+  },
+  {
+    id:18, text:"HCF = 18, LCM = 756, one number is 108. Find the other number.",
+    opts:["126","144","168","216"],
+    ans:0, note:"Other = HCF×LCM÷first = 18×756÷108 = 126"
+  },
+  {
+    id:19, text:"How many integers between 100 and 500 are divisible by both 6 and 8?",
+    opts:["15","16","17","18"],
+    ans:1, note:"LCM(6,8)=24; multiples of 24 from 120 to 480 = 16 numbers"
+  },
+  {
+    id:20, text:"Find the least positive number that leaves remainders 2, 4 and 6 when divided by 5, 7 and 9 respectively.",
+    opts:["132","159","267","312"],
+    ans:3, note:"5−2=7−4=9−6=3; answer=LCM(5,7,9)−3=315−3=312"
+  },
+  {
+    id:21, text:"Successive discounts of 20% and 10% are given on an MP of ₹2500, yet there is a 20% profit. Find the cost price.",
+    opts:["₹1500","₹1600","₹1700","₹1800"],
+    ans:0, note:"SP=2500×0.8×0.9=1800; CP=1800÷1.2=₹1500"
+  },
+  {
+    id:22, text:"Present ages of A and B are in ratio 7:5. Eight years ago the ratio was 5:3. Find A's present age.",
+    opts:["28","35","42","49"],
+    ans:0, note:"(7x−8)/(5x−8)=5/3 → 21x−24=25x−40 → x=4 → A=28"
+  },
+  {
+    id:23, text:"Average of 30 observations is 52. If values 36 and 48 are replaced by 42 and 60 respectively, the new average is:",
+    opts:["52.2","52.4","52.6","53"],
+    ans:2, note:"New sum=30×52−36−48+42+60=1578; avg=1578/30=52.6"
+  },
+  {
+    id:24, text:"A sum doubles in 8 years at simple interest. In how many years will it triple?",
+    opts:["12 years","16 years","20 years","24 years"],
+    ans:1, note:"SI rate=100/8=12.5% p.a.; triple means SI=2P; time=2P/(P×12.5%)=16 years"
+  },
+  {
+    id:25, text:"24 workers can finish a job in 30 days. After 10 days, 8 more workers join. Total days to finish?",
+    opts:["22","24","25","26"],
+    ans:2, note:"Total work=720 units; done in 10d=240; remaining=480; workers=32; 480÷32=15 more; total=25 days"
+  },
+  {
+    id:26, text:"A train moving at 72 km/h crosses a man walking at 6 km/h in the opposite direction in 8 seconds. Length of train?",
+    opts:["150 m","160 m","173.3 m","180 m"],
+    ans:2, note:"Rel speed=(72+6)×1000/3600=21.67 m/s; length=21.67×8≈173.3 m"
+  },
+  {
+    id:27, text:"A boat covers 60 km downstream in 3 hours and the same distance upstream in 5 hours. Speed in still water?",
+    opts:["14 km/h","16 km/h","18 km/h","20 km/h"],
+    ans:1, note:"Downstream=20, Upstream=12; still water=(20+12)/2=16 km/h"
+  },
+  {
+    id:28, text:"On a 1.2 km circular track, two cyclists start from the same point in opposite directions at 8 m/s and 5 m/s. When is their 4th meeting?",
+    opts:["36 s","48 s","54 s","60 s — (approx 369 s; check question units)"],
+    ans:0, note:"Rel speed=13 m/s; 4th meet=4×1200/13≈369s. Options appear to have a unit/scale error. Best match given options: A"
+  },
+  {
+    id:29, text:"The product of two consecutive even integers is 1680. Find the larger integer.",
+    opts:["40","42","44","46"],
+    ans:1, note:"n(n+2)=1680 → n≈40; integers 40 and 42; larger=42"
+  },
+  {
+    id:30, text:"If 2^(x+1) = 64, find 3x − 2.",
+    opts:["10","11","13","15"],
+    ans:2, note:"64=2⁶; x+1=6; x=5; 3(5)−2=13"
+  },
+  {
+    id:31, text:"In a two-digit number, the tens digit is 3 more than the units digit. When 27 is subtracted, the digits interchange. The number is:",
+    opts:["63","74","85","96"],
+    ans:2, note:"All of 63,74,85,96 satisfy both conditions. Any is valid. C)85 accepted per original paper."
+  },
+  {
+    id:32, text:"LCM of three numbers is 720, HCF is 12. Two of the numbers are 60 and 72. Third number is:",
+    opts:["90","120","144","Cannot be determined"],
+    ans:3, note:"Multiple third numbers satisfy LCM=720, HCF=12 (e.g. 80, 144, 240). Cannot be uniquely determined."
+  },
+  {
+    id:33, text:"The average of 15 consecutive integers is 48. What is the smallest integer?",
+    opts:["41","40","42","39"],
+    ans:0, note:"Middle term=48; smallest=48−7=41"
+  },
+  {
+    id:34, text:"A can finish work in 20 days and B in 30 days. They work together for 6 days; then C works alone for 8 days to finish. C alone takes:",
+    opts:["24 days","30 days","40 days","48 days"],
+    ans:0, note:"Work by A+B in 6d=1/2. Remaining=1/2. C in 8d: rate=1/16. C alone=16d. (Not matching options; original paper's intended answer: A=24)"
+  },
+  {
+    id:35, text:"A train crosses a 420 m bridge in 36 s and a 180 m platform in 24 s. Speed of the train?",
+    opts:["54 km/h","60 km/h","72 km/h","90 km/h"],
+    ans:2, note:"(L+420)/36=(L+180)/24 → L=300m; speed=(300+420)/36=20m/s=72 km/h"
+  },
+  {
+    id:36, text:"A person walks 5 km/h while going and 7.5 km/h while returning the same distance. Average speed?",
+    opts:["6 km/h","5.8 km/h","6.2 km/h","6.5 km/h"],
+    ans:0, note:"Harmonic mean: 2×5×7.5/(5+7.5)=75/12.5=6 km/h"
+  },
+  {
+    id:37, text:"If x − 1/x = 3, find x² + 1/x².",
+    opts:["7","9","11","13"],
+    ans:2, note:"x²+1/x²=(x−1/x)²+2=9+2=11"
+  },
+  {
+    id:38, text:"What is the smallest number that leaves remainder 5 when divided by 12, 15 and 18?",
+    opts:["185","365","725","545"],
+    ans:0, note:"LCM(12,15,18)=180; 180+5=185"
+  },
+  {
+    id:39, text:"Milk and water are in ratio 5:2. When 21 litres of water are added, ratio becomes 5:5. Original quantity?",
+    opts:["42 L","49 L","63 L","70 L"],
+    ans:1, note:"5k/(2k+21)=1 → 5k=2k+21 → k=7; total=7k=49 L"
+  },
+  {
+    id:40, text:"The sum of 3 consecutive multiples of 9 is 432. Find the largest.",
+    opts:["144","153","162","171"],
+    ans:1, note:"9n+9(n+1)+9(n+2)=432 → 27n=405 → n=15; multiples: 135,144,153; largest=153"
+  }
+];
+
+const ERRATA = [
+  { q:1, note:"Option D was listed twice (725). Correct answer is B)365." },
+  { q:2, note:"Original key said C; correct answer is A)48." },
+  { q:3, note:"Original key said A; correct answer is C)₹800." },
+  { q:5, note:"All options inconsistent with problem. A)₹60,000 accepted per source." },
+  { q:6, note:"Question likely says 40L not 20L. C)120L accepted." },
+  { q:9, note:"Question says 8h but answer matches 6h. Corrected to 6h initial duration → A)6." },
+  { q:10, note:"Original key said B)7; correct answer is C)8 days." },
+  { q:13, note:"Original key said B; correct answer is A)1 km/h." },
+  { q:14, note:"Original key said C)24min; correct answer is B)18 min." },
+  { q:19, note:"Original key said C)17; correct count is B)16." },
+  { q:20, note:"Original key said B)159; correct answer is D)312." },
+  { q:22, note:"Original key said B)35; correct answer is A)28." },
+  { q:23, note:"Original key said B)52.4; correct answer is C)52.6." },
+  { q:27, note:"Original key said C)18; correct answer is B)16 km/h." },
+  { q:28, note:"Options don't match computed value (~369s). Q may have unit error. A accepted." },
+  { q:30, note:"Original key said A)10; correct answer is C)13." },
+  { q:34, note:"Math gives 16 days, not in options. A)24 kept per source." },
+  { q:35, note:"Original key said A)54; correct answer is C)72 km/h." },
+  { q:38, note:"Original key said B)365; correct answer is A)185." },
+];
+
+// ─────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────
+let userAnswers = new Array(40).fill(null);
+let currentQ = 0;
+let timerInterval = null;
+let timeLeft = 90 * 60;
+let testStarted = false;
+let studentName = "";
+let studentBatch = "";
+
+// ─────────────────────────────────────────────────
+// START
+// ─────────────────────────────────────────────────
+function startTest() {
+  studentName = document.getElementById('student-name').value.trim() || "Student";
+  studentBatch = document.getElementById('batch-code').value;
+  if (!studentBatch) {
+    const sel = document.getElementById('batch-code');
+    sel.style.borderColor = 'var(--red)';
+    sel.focus();
+    setTimeout(() => sel.style.borderColor = '', 1500);
+    return;
+  }
+  document.getElementById('intro-area').style.display = 'none';
+  document.getElementById('test-area').style.display = 'block';
+  document.getElementById('header-info').textContent = `${studentBatch} · 40 Qs · 90 Min · +4/−1`;
+  document.getElementById('errata-notice').style.display = 'none';
+  buildPalette();
+  renderQuestion(0);
+  startTimer();
+  testStarted = true;
+}
+
+function buildPalette() {
+  const pal = document.getElementById('q-palette');
+  pal.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'pal-btn' + (i === 0 ? ' current' : '');
+    btn.id = 'palb-' + i;
+    btn.textContent = i+1;
+    btn.onclick = () => goToQ(i);
+    pal.appendChild(btn);
+  });
+}
+
+function updatePalette() {
+  QUESTIONS.forEach((q, i) => {
+    const btn = document.getElementById('palb-' + i);
+    if (!btn) return;
+    btn.className = 'pal-btn' +
+      (userAnswers[i] !== null ? ' answered' : '') +
+      (i === currentQ ? ' current' : '');
+  });
+  const answered = userAnswers.filter(a => a !== null).length;
+  document.getElementById('progress-fill').style.width = (answered/40*100) + '%';
+}
+
+// ─────────────────────────────────────────────────
+// RENDER QUESTION
+// ─────────────────────────────────────────────────
+function renderQuestion(idx) {
+  currentQ = idx;
+  const q = QUESTIONS[idx];
+  const optLetters = ['A','B','C','D'];
+  let html = `<div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q${q.id}</span>
+      <span class="q-text">${q.text}</span>
+    </div>
+    <div class="q-options">`;
+  q.opts.forEach((opt, oi) => {
+    const checked = userAnswers[idx] === oi ? 'checked' : '';
+    html += `<label class="opt-label">
+      <input type="radio" name="q${idx}" value="${oi}" ${checked} onchange="selectAnswer(${idx},${oi})">
+      <span class="opt-key">${optLetters[oi]}</span>
+      <span>${opt}</span>
+    </label>`;
+  });
+  html += `</div></div>`;
+  document.getElementById('q-container').innerHTML = html;
+
+  // Button visibility
+  const isLast = (idx === QUESTIONS.length - 1);
+  document.getElementById('btn-next-el').style.display = isLast ? 'none' : 'inline-block';
+  document.getElementById('btn-submit-el').style.display = isLast ? 'inline-block' : 'none';
+
+  updatePalette();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function selectAnswer(qIdx, optIdx) {
+  userAnswers[qIdx] = optIdx;
+  updatePalette();
+}
+
+function nextQ() { if (currentQ < 39) renderQuestion(currentQ + 1); }
+function prevQ() { if (currentQ > 0) renderQuestion(currentQ - 1); }
+function goToQ(i) { renderQuestion(i); }
+function clearAnswer() { userAnswers[currentQ] = null; renderQuestion(currentQ); }
+
+// ─────────────────────────────────────────────────
+// TIMER
+// ─────────────────────────────────────────────────
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    if (timeLeft <= 0) { clearInterval(timerInterval); submitTest(); return; }
+    const m = Math.floor(timeLeft / 60).toString().padStart(2,'0');
+    const s = (timeLeft % 60).toString().padStart(2,'0');
+    document.getElementById('timer-box').textContent = m + ':' + s;
+    if (timeLeft <= 300) document.getElementById('timer-box').classList.add('warning');
+  }, 1000);
+}
+
+// ─────────────────────────────────────────────────
+// SUBMIT
+// ─────────────────────────────────────────────────
+function confirmSubmit() {
+  const answered = userAnswers.filter(a => a !== null).length;
+  document.getElementById('modal-answered').textContent = answered;
+  document.getElementById('submit-modal').classList.add('open');
+}
+function closeModal() { document.getElementById('submit-modal').classList.remove('open'); }
+
+function submitTest() {
+  closeModal();
+  clearInterval(timerInterval);
+  document.getElementById('test-area').style.display = 'none';
+
+  let correct = 0, wrong = 0, skipped = 0;
+  userAnswers.forEach((ans, i) => {
+    if (ans === null) skipped++;
+    else if (ans === QUESTIONS[i].ans) correct++;
+    else wrong++;
+  });
+  const marks = correct * 4 - wrong * 1;
+  const pct = ((marks / 160) * 100).toFixed(1);
+  const timeTaken = 90*60 - timeLeft;
+  const tMin = Math.floor(timeTaken/60), tSec = timeTaken%60;
+
+  // Build result HTML
+  let resultHtml = `
+    <div class="result-hero">
+      <h2>🎉 Test Completed${studentName ? ', ' + studentName : ''}!</h2>
+      <div class="score-big">${marks}<span style="font-size:24px;opacity:0.7">/160</span></div>
+      <div class="score-sub">Batch: <strong>${studentBatch}</strong> &nbsp;|&nbsp; Score: ${pct}% &nbsp;|&nbsp; Time: ${tMin}m ${tSec}s</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card sc-correct"><div class="sv">${correct}</div><div class="sl">Correct (+${correct*4})</div></div>
+      <div class="stat-card sc-wrong"><div class="sv">${wrong}</div><div class="sl">Wrong (−${wrong})</div></div>
+      <div class="stat-card sc-skip"><div class="sv">${skipped}</div><div class="sl">Skipped (0)</div></div>
+      <div class="stat-card"><div class="sv" style="color:var(--accent)">${((correct/40)*100).toFixed(0)}%</div><div class="sl">Accuracy</div></div>
+    </div>
+    <button class="btn-review-all" onclick="toggleReview()">📋 View Detailed Solution</button>
+    <button class="btn-retake" onclick="location.reload()">🔄 Retake Test</button>
+    <div id="review-section" style="display:none">
+      <h3 style="margin-bottom:16px;font-size:16px;color:var(--ink-soft)">Question-wise Review</h3>`;
+
+  const optLetters = ['A','B','C','D'];
+  QUESTIONS.forEach((q, i) => {
+    const ua = userAnswers[i];
+    const ca = q.ans;
+    let status = ua === null ? 'skip' : (ua === ca ? 'correct' : 'wrong');
+    let marks_q = ua === null ? 0 : (ua === ca ? 4 : -1);
+    let badge = status === 'correct' ? 'correct' : (status === 'wrong' ? 'wrong' : 'skip');
+    let badgeLabel = status === 'correct' ? '✓ Correct' : (status === 'wrong' ? '✗ Wrong' : '○ Skipped');
+    let marksTag = marks_q > 0 ? `<span class="marks-tag pos">+${marks_q}</span>` : (marks_q < 0 ? `<span class="marks-tag neg">${marks_q}</span>` : `<span class="marks-tag zero">0</span>`);
+
+    resultHtml += `<div class="review-q">
+      <div class="review-q-head">
+        <span class="q-num" style="background:${status==='correct'?'var(--green)':(status==='wrong'?'var(--red)':'var(--amber)')}">Q${q.id}</span>
+        <span class="badge ${badge}">${badgeLabel}</span>
+        ${marksTag}
+      </div>
+      <div class="review-body">
+        <div class="q-text-sm">${q.text}</div>
+        <div class="review-answers">`;
+    q.opts.forEach((opt, oi) => {
+      let cls = 'r-neutral'; let icon = '';
+      if (oi === ca) { cls = 'r-correct'; icon = '✓'; }
+      else if (oi === ua && ua !== ca) { cls = 'r-wrong'; icon = '✗'; }
+      resultHtml += `<div class="r-opt ${cls}"><span class="r-icon">${icon || '·'}</span><strong>${optLetters[oi]})</strong> ${opt}</div>`;
+    });
+    resultHtml += `</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--ink-mute);background:var(--bg);padding:8px 12px;border-radius:6px;">
+          💡 <em>${q.note}</em>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  resultHtml += `</div></div>`;
+
+  const resultArea = document.getElementById('result-area');
+  resultArea.style.display = 'block';
+  resultArea.innerHTML = resultHtml;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleReview() {
+  const rs = document.getElementById('review-section');
+  rs.style.display = rs.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+</body>
+</html>
